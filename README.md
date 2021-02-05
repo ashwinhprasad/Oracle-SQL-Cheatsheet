@@ -60,3 +60,23 @@ SELECT name||' - '||email FROM students;
 /* using alias to change column title */
 SELECT name||' - '||email AS "Basic Student Info" FROM students;
 ```
+
+**Constraints**
+
+```sql
+/* Column Constraint */
+CREATE TABLE students(
+name VARCHAR2(50) NOT NULL,
+email VARCHAR2(100) CONSTRAINT email_uniq UNIQUE NOT NULL,
+id NUMBER(5) CONSTRAINT pk PRIMARY KEY,
+dept VARCHAR2(10) DEFAULT('CSBS'),
+mark NUMBER(3)
+);
+
+/* Table Constraint (Composite Primary Key)*/
+CREATE TABLE ENROLL(
+student_id NUMBER(3),
+course_id NUMBER(3),
+CONSTRAINT pk PRIMARY KEY (student_id,course_id)
+);
+```
