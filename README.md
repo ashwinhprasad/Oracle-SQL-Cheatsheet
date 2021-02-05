@@ -59,6 +59,18 @@ SELECT name||' - '||email FROM students;
 
 /* using alias to change column title */
 SELECT name||' - '||email AS "Basic Student Info" FROM students;
+
+/* return all unique departments */
+SELECT DISTINCT dept FROM students;
+
+/* Second letter of the student name should be z */
+SELECT * FROM students WHERE name LIKE '_z%';
+
+/* second letter should be 'a' and last letter should be 'i' */
+SELECT * FROM students WHERE name LIKE '_a%i';
+
+/* Between */
+SELECT name FROM students WHERE marks BETWEEN 50 AND 80;
 ```
 
 **Constraints**
@@ -79,4 +91,30 @@ student_id NUMBER(3),
 course_id NUMBER(3),
 CONSTRAINT pk PRIMARY KEY (student_id,course_id)
 );
+
+/* CHECK Constraint*/
+CREATE TABLE students(
+name VARCHAR2(30),
+marks NUMBER(3) CONSTRAINT chk_mark CHECK (marks >= 0 AND marks <= 100)
+);
+```
+
+**Delete**
+
+```sql
+/* DELETE */
+DELETE FROM students WHERE id=2;
+
+/* DELETE all rows from table */
+TRUNCATE TABLE students;
+```
+
+**Order By**
+
+```sql
+/* ascending order of marks */
+SELECT * FROM students ORDER BY mark;
+
+/* descending order of marks */
+SELECT * FROM students ORDER BY mark desc;
 ```
