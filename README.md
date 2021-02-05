@@ -1,4 +1,6 @@
-# SQL Cheatsheet
+# Oracle SQL Cheatsheet
+
+This Repository contains the basics of oracle sql for quick references
 
 **Basic create, Insert and Display**
 
@@ -18,4 +20,43 @@ SELECT 1 FROM dual;
 
 /* display all students from table */
 SELECT * FROM students;
+
+/* delete table */
+DROP TABLE students;
+```
+
+**Altering Table and Columns**
+
+```sql
+/* add a new column */
+ALTER TABLE students ADD(location VARCHAR2(30));
+
+/* make email id primary key*/
+ALTER TABLE students ADD CONSTRAINT empk PRIMARY KEY(email);
+
+/* modify a particular column */
+ALTER TABLE students MODIFY(branch VARCHAR2(5));
+```
+
+**Updating values in a Table**
+
+```sql
+/* update the location of a student */
+UPDATE students SET location='nanganllur' WHERE email='luffy@gmail.com';
+```
+
+**Filtering**
+
+```sql
+/* filtering students based on branch */
+SELECT * FROM students WHERE branch='csbs';
+
+/*(selection and projection) */
+SELECT name from students WHERE branch='csbs';
+
+/* selecting multiple columns as a single column */
+SELECT name||' - '||email FROM students;
+
+/* using alias to change column title */
+SELECT name||' - '||email AS "Basic Student Info" FROM students;
 ```
