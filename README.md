@@ -118,3 +118,24 @@ SELECT * FROM students ORDER BY mark;
 /* descending order of marks */
 SELECT * FROM students ORDER BY mark desc;
 ```
+
+**FOREIGN KEY (Many-To-One)**
+
+```sql
+/* Creating user table */
+CREATE TABLE passenger(
+username VARCHAR2(20),
+passenger_id NUMBER NOT NULL,
+phone VARCHAR2(10),
+CONSTRAINT user_pk PRIMARY KEY(passenger_id)
+);
+
+/* Foreign Key Table */
+CREATE TABLE trains(
+train_id NUMBER,
+trainname VARCHAR2(20),
+passengers NUMBER,
+CONSTRAINT train_pk PRIMARY KEY(train_id),
+CONSTRAINT train_pass_fk FOREIGN KEY (passengers) REFERENCES passenger(passenger_id)
+);
+```
