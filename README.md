@@ -97,6 +97,26 @@ CREATE TABLE students(
 name VARCHAR2(30),
 marks NUMBER(3) CONSTRAINT chk_mark CHECK (marks >= 0 AND marks <= 100)
 );
+
+
+/* FOREIGN KEY */
+/* Creating user table */
+CREATE TABLE passenger(
+username VARCHAR2(20),
+passenger_id NUMBER NOT NULL,
+phone VARCHAR2(10),
+CONSTRAINT user_pk PRIMARY KEY(passenger_id)
+);
+
+/* Foreign Key Table */
+CREATE TABLE trains(
+train_id NUMBER,
+trainname VARCHAR2(20),
+passengers NUMBER,
+CONSTRAINT train_pk PRIMARY KEY(train_id),
+CONSTRAINT train_pass_fk FOREIGN KEY (passengers) REFERENCES passenger(passenger_id)
+);
+
 ```
 
 **Delete**
@@ -119,23 +139,57 @@ SELECT * FROM students ORDER BY mark;
 SELECT * FROM students ORDER BY mark desc;
 ```
 
-**FOREIGN KEY (Many-To-One)**
+**Dual Table**
+
+dual is a dummy table that can be used for doing some temporary operations
 
 ```sql
-/* Creating user table */
-CREATE TABLE passenger(
-username VARCHAR2(20),
-passenger_id NUMBER NOT NULL,
-phone VARCHAR2(10),
-CONSTRAINT user_pk PRIMARY KEY(passenger_id)
-);
+/* Displays 1 */
+SELECT 1 FROM dual;
 
-/* Foreign Key Table */
-CREATE TABLE trains(
-train_id NUMBER,
-trainname VARCHAR2(20),
-passengers NUMBER,
-CONSTRAINT train_pk PRIMARY KEY(train_id),
-CONSTRAINT train_pass_fk FOREIGN KEY (passengers) REFERENCES passenger(passenger_id)
-);
+/* Displays Ashwin Prasad */
+SELECT 'Ashwin '||'Prasad' FROM dual;
+```
+
+**String Manupulation**
+
+```sql
+/* To upper case */
+SELECT UPPER('fly high') FROM dual;
+
+/* To lower case */
+SELECT LOWER('SAKURAMITSUTSUKI') FROM dual;
+
+/* First letter Upper */
+SELECT INITCAP('hikariare') FROM dual;
+
+/* Concatenate 2 strings */
+SELECT CONCAT('Monkey ','D Luffy') FROM dual;
+
+/* prints given range of characters from a string */
+SELECT SUBSTR('Imagination',6) FROM dual;
+
+/* Optional 3rd parameter */
+SELECT SUBSTR('Imagination',6,3) FROM dual;
+
+/* returns Length of string */
+SELECT LENGTH('spyair') FROM dual;
+
+/* checks if a string is a substring of another string  */
+SELECT INSTR('Erwin Smith','win') FROM dual;
+
+/* Left Padding for encrypt */
+SELECT LPAD('91765',10,'*') FROM dual;
+
+/* Right Padding for encrypt */
+SELECT RPAD('91765',10,'*') FROM dual;
+
+/* TRIM */
+SELECT TRIM('              Oracle vs mysql            ') FROM dual;
+
+/* Replace */
+SELECT REPlACE('Network Model','network','hierarchical') FROM dual;
+
+/* Convert student names to upper case */
+UPDATE students SET sname = UPPER(sname);
 ```
