@@ -193,3 +193,38 @@ SELECT REPlACE('Network Model','network','hierarchical') FROM dual;
 /* Convert student names to upper case */
 UPDATE students SET sname = UPPER(sname);
 ```
+
+**Copy Original to Duplicates**
+```sql 
+/* create table students */
+CREATE TABLE original(
+    name VARCHAR2(50),
+    age NUMBER(2),
+    school VARCHAR2(100),
+    mark NUMBER(3)
+);
+
+/* Insert Into Table original  */
+INSERT ALL
+INTO original(name,age,school,mark) VALUES('ashwin',19,'Modern',82)
+INTO original(name,age,school,mark) VALUES('luffy',21,'east blue',12)
+INTO original(name,age,school,mark) VALUES('zoro',25,'Wano Kuni',64)
+INTO original(name,age,school,mark) VALUES('Sanji',25,'All Blue',92)
+INTO original(name,age,school,mark) VALUES('nami',21,'Fishmen',96)
+INTO original(name,age,school,mark) VALUES('robin',26,'poneglyphs',100)
+SELECT 1 FROM dual;
+
+/* duplicate table */
+CREATE TABLE duptable(
+    name VARCHAR2(50),
+    age NUMBER(2),
+    school VARCHAR2(100),
+    mark NUMBER(3)
+);
+
+/* copy original to duptable */
+INSERT INTO duptable(SELECT * FROM original);
+
+/* Print duplicate table rows */
+SELECT * FROM duptable;
+```
